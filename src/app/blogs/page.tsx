@@ -2,7 +2,7 @@ import BlogCard from "@/components/ui/BlogCard";
 import { Blog } from "@/types";
 
 const BlogsPage = async () => {
-  const res = await fetch("http://localhost:7000/blogs", {
+  const res = await fetch("http://localhost:3000/api/blogs", {
     cache: "no-store",
   });
   const blogs = await res.json();

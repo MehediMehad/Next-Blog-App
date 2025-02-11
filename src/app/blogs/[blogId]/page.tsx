@@ -1,6 +1,5 @@
 import BlogDetailsCard from "@/components/ui/BlogDetailsCard";
 import { Blog } from "@/types";
-import { MdDescription } from "react-icons/md";
 
 export const generateStaticParams = async () => {
   const res = await fetch("http://localhost:7000/blogs");
