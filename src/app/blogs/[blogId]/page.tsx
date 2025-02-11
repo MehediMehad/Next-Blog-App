@@ -1,5 +1,6 @@
 import BlogDetailsCard from "@/components/ui/BlogDetailsCard";
 import { Blog } from "@/types";
+import { MdDescription } from "react-icons/md";
 
 export const generateStaticParams = async () => {
   const res = await fetch("http://localhost:7000/blogs");
@@ -9,6 +10,21 @@ export const generateStaticParams = async () => {
     blogId: blog.id,
   }));
 };
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ blogId: string }>;
+}) {
+  const { blogId } = await params;
+  const res = await fetch(`http://localhost:7000/blogs/${blogId}`);
+  const blog: Blog = await res.json();
+
+  return {
+    title: blog.title,
+    description: blog.description,
+  };
+}
+
 const BlogDetailsPage = async ({
   params,
 }: {
@@ -18,7 +34,7 @@ const BlogDetailsPage = async ({
 
   const res = await fetch(`http://localhost:7000/blogs/${blogId}`);
   const blog = await res.json();
-  console.log(blog);
+  // console.log(blog);
 
   return (
     <div className="my-10">
